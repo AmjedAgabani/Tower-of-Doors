@@ -4,8 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
+    "build": "npx webpack --config webpack.config.js",
+    "server": "node server.js",
+    "start": "webpack-dev-server --open",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack --config webpack.config.js"
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -19,9 +22,13 @@
   },
   "homepage": "https://github.com/AmjedAgabani/Tower-Of-Doors-2-webpack#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "express": "^4.17.1",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
     "lodash": "^4.17.15"
