@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import printMe from './print.js';
+import rotation from './rotate.js'
 
 function component() {
   const element = document.createElement('div');
@@ -24,5 +25,39 @@ if (module.hot) {
     document.body.removeChild(element);
     element = component(); // Re-render the "component" to update the click handler
     document.body.appendChild(element);
+  })
+}
+
+// amjed code
+
+console.log(rotation);
+
+var myRotation1 = new rotation();
+
+function rotateButton() {
+  const instructionText = document.createElement('div');
+  const rotateButton = document.createElement('button');
+
+  instructionText.innerHTML = _.join(['Tower', 'of', 'Doors'], ' ');
+
+  rotateButton.innerHTML = 'click to rotate';
+  rotateButton.onclick = myRotation1.rotate;
+
+  instructionText.appendChild(rotateButton);
+
+  return instructionText;
+
+}
+
+let instructionText = rotateButton();
+document.body.appendChild(instructionText);
+
+
+if (module.hot) {
+  module.hot.accept('./rotate.js', function () {
+    console.log('Accepting the updated rotation module!');
+    document.body.removeChild(instructionText);
+    instructionText = rotateButton(); // Re-render the "component" to update the click handler
+    document.body.appendChild(instructionText);
   })
 }
