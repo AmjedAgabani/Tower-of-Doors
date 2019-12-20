@@ -30,8 +30,6 @@ if (module.hot) {
 
 // amjed code
 
-console.log(rotation);
-
 var myRotation1 = new rotation();
 
 function rotateButton() {
@@ -41,7 +39,7 @@ function rotateButton() {
   instructionText.innerHTML = _.join(['Tower', 'of', 'Doors'], ' ');
 
   rotateButton.innerHTML = 'click to rotate';
-  rotateButton.onclick = myRotation1.rotate;
+  rotateButton.onclick = () => myRotation1.rotate();
 
   instructionText.appendChild(rotateButton);
 
