@@ -54,8 +54,12 @@ trapDoor.prototype.name = function () {
     // figure out how to name the door depending on the level its on
 }
 
-module.exports = {
-    centralDoor,
-    outerDoor,
-    trapDoor
-}
+exports.centralDoor = centralDoor;
+exports.outerDoor = outerDoor;
+exports.trapDoor = trapDoor;
+
+// module.exports = {
+//     centralDoor,
+//     outerDoor,
+//     trapDoor
+// }

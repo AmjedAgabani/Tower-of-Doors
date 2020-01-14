@@ -1,6 +1,7 @@
 class Rotation {
     constructor(startAngle = 0) {
         this.currentAngle = startAngle;
+        this.correctAngle = 120;
     }
     
     rotate(rotationDegree = 60) {
