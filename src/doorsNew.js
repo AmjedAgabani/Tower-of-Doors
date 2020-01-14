@@ -1,19 +1,17 @@
 // doors
 class CentralDoor {
-    constructor() {
-        this.open = false;
-        this.usable = false;
-    }
 
-    openDoor() {
-        this.open = true;
+    openDoor(rotation) {
         console.log("Door is now open.")
-        if (currentAngle !== correctAngle) {
+        if (rotation.currentAngle !== 120) {
             console.log("Door is not usable, you are met by a brick wall.")
         } else {
-            this.usable = true;
             console.log("Door is usable.")
         }
+    }
+
+    useDoor() {
+        // function to travel through levels
     }
 }
 
