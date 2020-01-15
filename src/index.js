@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import rotation from './rotate.js'
-import centralDoor from './doorsNew.js';
+
+var doors = require('./doorsNew.js');
 
 // End Turn & rotate
 var towerRotation = new rotation();
@@ -21,7 +22,7 @@ let instructionText = rotateButton();
 document.body.appendChild(instructionText);
 
 // Central Door
-var doors = new centralDoor();
+var centralDoorInstance = new doors.CentralDoor();
 
 function openCentralDoor() {
   const doorOpenText = document.createElement('div');
@@ -29,14 +30,33 @@ function openCentralDoor() {
 
   doorOpenText.innerHTML = _.join(['Central', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => doors.openDoor(towerRotation);
+  doorOpenButton.onclick = () => centralDoorInstance.openDoor(towerRotation);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
 }
 
-let doorOpenText = openCentralDoor();
-document.body.appendChild(doorOpenText);
+let centralDoorOpenText = openCentralDoor();
+document.body.appendChild(centralDoorOpenText);
+
+// Outer Door
+var outerDoorInstance = new doors.OuterDoor();
+
+function openOuterDoor() {
+  const doorOpenText = document.createElement('div');
+  const doorOpenButton = document.createElement('button');
+
+  doorOpenText.innerHTML = _.join(['Outer', 'Door'], ' ');
+  doorOpenButton.innerHTML = 'click to open door';
+  doorOpenButton.onclick = () => outerDoorInstance.openDoor(towerRotation);
+  doorOpenText.appendChild(doorOpenButton);
+
+  return doorOpenText;
+}
+
+let outerDoorOpenText = openOuterDoor();
+document.body.appendChild(outerDoorOpenText);
+
 
 // hot module reload
 
@@ -49,8 +69,8 @@ if (module.hot) {
   })
   module.hot.accept('./doorsNew.js', function () {
     console.log('Accepting the updated doorsNew module!');
-    document.body.removeChild(doorOpenText);
-    doorOpenText = openCentralDoor(); // Re-render the "component" to update the click handler
-    document.body.appendChild(doorOpenText);
+    document.body.removeChild(centralDoorOpenText);
+    centralDoorOpenText = openCentralDoor(); // Re-render the "component" to update the click handler
+    document.body.appendChild(centralDoorOpenText);
   })
 }

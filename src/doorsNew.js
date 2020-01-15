@@ -15,4 +15,20 @@ class CentralDoor {
     }
 }
 
-export default CentralDoor;
+class OuterDoor {
+
+    openDoor(rotation) {
+        console.log("Door is open")
+        if (rotation.currentAngle !== rotation.correctAngle) {
+            console.log("You can see a field of grass.")
+        } else {
+            console.log("You can see a field of grass lit underneath the moon.")
+        }
+    }
+
+}
+
+module.exports = {
+    CentralDoor: CentralDoor,
+    OuterDoor: OuterDoor
+}
