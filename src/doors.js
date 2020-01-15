@@ -33,7 +33,7 @@ class TrapDoor {
 
 }
 
-export default {
+export {
     CentralDoor,
     OuterDoor,
     TrapDoor
