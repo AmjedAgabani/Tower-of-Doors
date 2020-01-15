@@ -9,10 +9,7 @@ class CentralDoor {
             console.log("Door is usable.")
         }
     }
-
-    useDoor() {
-        // function to travel through levels
-    }
+    
 }
 
 class OuterDoor {
@@ -36,8 +33,8 @@ class TrapDoor {
 
 }
 
-module.exports = {
-    CentralDoor: CentralDoor,
-    OuterDoor: OuterDoor,
-    TrapDoor: TrapDoor
+export default {
+    CentralDoor,
+    OuterDoor,
+    TrapDoor
 }
