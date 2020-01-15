@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import rotation from './rotate.js'
 
-var doors = require('./doorsNew.js');
+var doors = require('./doors.js');
 
 // End Turn & rotate
 var towerRotation = new rotation();
@@ -85,8 +85,8 @@ if (module.hot) {
     instructionText = rotateButton(); // Re-render the "component" to update the click handler
     document.body.appendChild(instructionText);
   })
-  module.hot.accept('./doorsNew.js', function () {
-    console.log('Accepting the updated doorsNew module!');
+  module.hot.accept('./doors.js', function () {
+    console.log('Accepting the updated doors module!');
     document.body.removeChild(centralDoorOpenText);
     centralDoorOpenText = openCentralDoor(); // Re-render the "component" to update the click handler
     document.body.appendChild(centralDoorOpenText);
