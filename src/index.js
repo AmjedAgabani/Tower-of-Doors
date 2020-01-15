@@ -1,55 +1,82 @@
 import _ from 'lodash';
-import printMe from './print.js';
 import rotation from './rotate.js'
 
-function component() {
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
+var doors = require('./doors.js');
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
-}
-
-let element = component(); // Store the element to re-render on print.js changes
-document.body.appendChild(element);
-
-if (module.hot) {
-  module.hot.accept('./print.js', function () {
-    console.log('Accepting the updated printMe module!');
-    document.body.removeChild(element);
-    element = component(); // Re-render the "component" to update the click handler
-    document.body.appendChild(element);
-  })
-}
-
-// amjed code
-
-var myRotation1 = new rotation();
+// End Turn & rotate
+var towerRotation = new rotation();
 
 function rotateButton() {
   const instructionText = document.createElement('div');
-  const rotateButton = document.createElement('button');
+  const endTurnButton = document.createElement('button');
 
-  instructionText.innerHTML = _.join(['Tower', 'of', 'Doors'], ' ');
-
-  rotateButton.innerHTML = 'click to rotate';
-  rotateButton.onclick = () => myRotation1.rotate();
-
-  instructionText.appendChild(rotateButton);
+  instructionText.innerHTML = _.join(['End', 'Turn'], ' ');
+  endTurnButton.innerHTML = 'click for next turn';
+  endTurnButton.onclick = () => towerRotation.rotate();
+  instructionText.appendChild(endTurnButton);
 
   return instructionText;
-
 }
 
 let instructionText = rotateButton();
 document.body.appendChild(instructionText);
 
+// Central Door
+var centralDoorInstance = new doors.CentralDoor();
+
+function openCentralDoor() {
+  const doorOpenText = document.createElement('div');
+  const doorOpenButton = document.createElement('button');
+
+  doorOpenText.innerHTML = _.join(['Central', 'Door'], ' ');
+  doorOpenButton.innerHTML = 'click to open door';
+  doorOpenButton.onclick = () => centralDoorInstance.openDoor(towerRotation);
+  doorOpenText.appendChild(doorOpenButton);
+
+  return doorOpenText;
+}
+
+let centralDoorOpenText = openCentralDoor();
+document.body.appendChild(centralDoorOpenText);
+
+// Outer Door
+var outerDoorInstance = new doors.OuterDoor();
+
+function openOuterDoor() {
+  const doorOpenText = document.createElement('div');
+  const doorOpenButton = document.createElement('button');
+
+  doorOpenText.innerHTML = _.join(['Outer', 'Door'], ' ');
+  doorOpenButton.innerHTML = 'click to open door';
+  doorOpenButton.onclick = () => outerDoorInstance.openDoor(towerRotation);
+  doorOpenText.appendChild(doorOpenButton);
+
+  return doorOpenText;
+}
+
+let outerDoorOpenText = openOuterDoor();
+document.body.appendChild(outerDoorOpenText);
+
+// Trap Door
+var trapDoorInstance = new doors.TrapDoor();
+
+function openTrapDoor() {
+  const doorOpenText = document.createElement('div');
+  const doorOpenButton = document.createElement('button');
+
+  doorOpenText.innerHTML = _.join(['Trap', 'Door'], ' ');
+  doorOpenButton.innerHTML = 'click to open door';
+  doorOpenButton.onclick = () => trapDoorInstance.openDoor();
+  doorOpenText.appendChild(doorOpenButton);
+
+  return doorOpenText;
+}
+
+let trapDoorOpenText = openTrapDoor();
+document.body.appendChild(trapDoorOpenText);
+
+
+// hot module reload
 
 if (module.hot) {
   module.hot.accept('./rotate.js', function () {
@@ -57,5 +84,11 @@ if (module.hot) {
     document.body.removeChild(instructionText);
     instructionText = rotateButton(); // Re-render the "component" to update the click handler
     document.body.appendChild(instructionText);
+  })
+  module.hot.accept('./doors.js', function () {
+    console.log('Accepting the updated doors module!');
+    document.body.removeChild(centralDoorOpenText);
+    centralDoorOpenText = openCentralDoor(); // Re-render the "component" to update the click handler
+    document.body.appendChild(centralDoorOpenText);
   })
 }

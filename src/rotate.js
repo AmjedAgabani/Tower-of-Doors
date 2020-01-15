@@ -1,8 +1,9 @@
 class Rotation {
     constructor(startAngle = 0) {
         this.currentAngle = startAngle;
+        this.correctAngle = 120;
     }
-    
+
     rotate(rotationDegree = 60) {
         var currentAngle = this.currentAngle + rotationDegree;
         if (currentAngle >= 360) {
