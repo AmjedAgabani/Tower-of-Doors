@@ -57,6 +57,24 @@ function openOuterDoor() {
 let outerDoorOpenText = openOuterDoor();
 document.body.appendChild(outerDoorOpenText);
 
+// Trap Door
+var trapDoorInstance = new doors.TrapDoor();
+
+function openTrapDoor() {
+  const doorOpenText = document.createElement('div');
+  const doorOpenButton = document.createElement('button');
+
+  doorOpenText.innerHTML = _.join(['Trap', 'Door'], ' ');
+  doorOpenButton.innerHTML = 'click to open door';
+  doorOpenButton.onclick = () => trapDoorInstance.openDoor();
+  doorOpenText.appendChild(doorOpenButton);
+
+  return doorOpenText;
+}
+
+let trapDoorOpenText = openTrapDoor();
+document.body.appendChild(trapDoorOpenText);
+
 
 // hot module reload
 
