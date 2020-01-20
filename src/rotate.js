@@ -1,7 +1,14 @@
-class Rotation {
+class MoonPosition {
+
+    constructor(moonAngle) {
+        this.moonAngle = moonAngle;
+    }
+
+}
+
+class TowerRotation {
     constructor(startAngle = 0) {
         this.currentAngle = startAngle;
-        this.correctAngle = 120;
     }
 
     rotate(rotationDegree = 60) {
@@ -10,9 +17,11 @@ class Rotation {
             currentAngle -= 360;
         }
         this.currentAngle = currentAngle;
-        console.log("Current angle is = " + this.currentAngle + " degrees");
+        console.log("Current tower rotation is = " + this.currentAngle + " degrees");
     }
 }
 
-export default Rotation;
-
+export {
+    MoonPosition,
+    TowerRotation
+}

@@ -9,23 +9,32 @@ class CentralDoor {
             console.log("Door is usable.")
         }
     }
-    
+
 }
 
 class OuterDoor {
 
-    openDoor(rotation) {
+    constructor(initialDoorRotation, outerDoorNumber) {
+        this.initialDoorRotation = initialDoorRotation;
+        this.outerDoorNumber = outerDoorNumber;
+    }
+
+    openDoor() {
         console.log("Outer door is open")
-        if (rotation.currentAngle !== rotation.correctAngle) {
-            console.log("You can see a field of grass.")
-        } else {
+        if (this.initialDoorRotation - towerRotation - moonAngle == 0) {
             console.log("You can see a field of grass lit underneath the moon.")
+        } else {
+            console.log("You can see a field of grass.")
         }
     }
 
 }
 
 class TrapDoor {
+
+    constructor(trapDoorNumber) {
+        this.trapDoorNumber = trapDoorNumber;
+    }
 
     openDoor() {
         console.log("Trap door is open")

@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import rotation from './rotate.js'
+import towerRotation from './rotate.js'
 
 var doors = require('./doors.js');
 
 // End Turn & rotate
-var towerRotation = new rotation();
+var towerRotation = new towerRotation();
 
 function rotateButton() {
   const instructionText = document.createElement('div');
