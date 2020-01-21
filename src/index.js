@@ -1,10 +1,12 @@
 import _ from 'lodash';
-import towerRotation from './rotate.js'
+var {MoonPosition, TowerRotation} = require('./rotate.js')
+var {CentralDoor, OuterDoor, TrapDoor} = require('./doors.js');
 
-var doors = require('./doors.js');
+// Moon initialization 
+var moonAngle = new MoonPosition(0);
 
 // End Turn & rotate
-var towerRotation = new towerRotation();
+var towerRotation = new TowerRotation(0);
 
 function rotateButton() {
   const instructionText = document.createElement('div');
@@ -22,7 +24,7 @@ let instructionText = rotateButton();
 document.body.appendChild(instructionText);
 
 // Central Door
-var centralDoorInstance = new doors.CentralDoor();
+var centralDoorInstance = new CentralDoor(0);
 
 function openCentralDoor() {
   const doorOpenText = document.createElement('div');
@@ -40,7 +42,7 @@ let centralDoorOpenText = openCentralDoor();
 document.body.appendChild(centralDoorOpenText);
 
 // Outer Door
-var outerDoorInstance = new doors.OuterDoor();
+var outerDoorInstance = new OuterDoor(0, 1);
 
 function openOuterDoor() {
   const doorOpenText = document.createElement('div');
@@ -48,7 +50,7 @@ function openOuterDoor() {
 
   doorOpenText.innerHTML = _.join(['Outer', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => outerDoorInstance.openDoor(towerRotation);
+  doorOpenButton.onclick = () => outerDoorInstance.openDoor(towerRotation, moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
@@ -58,7 +60,7 @@ let outerDoorOpenText = openOuterDoor();
 document.body.appendChild(outerDoorOpenText);
 
 // Trap Door
-var trapDoorInstance = new doors.TrapDoor();
+var trapDoorInstance = new TrapDoor();
 
 function openTrapDoor() {
   const doorOpenText = document.createElement('div');

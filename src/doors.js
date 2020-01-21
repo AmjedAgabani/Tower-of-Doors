@@ -1,12 +1,16 @@
 // doors
 class CentralDoor {
 
+    constructor(initialDoorRotation) {
+        this.initialDoorRotation = initialDoorRotation;
+    }
+
     openDoor(rotation) {
         console.log("Central door is now open.")
-        if (rotation.currentAngle !== rotation.correctAngle) {
-            console.log("Door is not usable, you are met by a brick wall.")
-        } else {
+        if (this.initialDoorRotation - rotation.currentAngle - rotation.moonAngle == 0) {
             console.log("Door is usable.")
+        } else {
+            console.log("Door is not usable, you are met by a brick wall.")
         }
     }
 
@@ -19,9 +23,9 @@ class OuterDoor {
         this.outerDoorNumber = outerDoorNumber;
     }
 
-    openDoor() {
+    openDoor(towerRotation, moonPosition) {
         console.log("Outer door is open")
-        if (this.initialDoorRotation - towerRotation - moonAngle == 0) {
+        if (this.initialDoorRotation - towerRotation.currentAngle - moonPosition.moonAngle === 0) {
             console.log("You can see a field of grass lit underneath the moon.")
         } else {
             console.log("You can see a field of grass.")

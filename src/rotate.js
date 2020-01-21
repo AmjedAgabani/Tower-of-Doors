@@ -7,8 +7,8 @@ class MoonPosition {
 }
 
 class TowerRotation {
-    constructor(startAngle = 0) {
-        this.currentAngle = startAngle;
+    constructor(startAngle) {
+        this.currentAngle = startAngle
     }
 
     rotate(rotationDegree = 60) {
