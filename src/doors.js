@@ -5,9 +5,9 @@ class CentralDoor {
         this.initialDoorRotation = initialDoorRotation;
     }
 
-    openDoor(rotation) {
+    openDoor(towerRotation, moonPosition) {
         console.log("Central door is now open.")
-        if (this.initialDoorRotation - rotation.currentAngle - rotation.moonAngle == 0) {
+        if (this.initialDoorRotation - towerRotation.currentAngle - moonPosition.moonAngle == 0) {
             console.log("Door is usable.")
         } else {
             console.log("Door is not usable, you are met by a brick wall.")

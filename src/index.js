@@ -32,7 +32,7 @@ function openCentralDoor() {
 
   doorOpenText.innerHTML = _.join(['Central', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => centralDoorInstance.openDoor(towerRotation);
+  doorOpenButton.onclick = () => centralDoorInstance.openDoor(towerRotation, moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
