@@ -18,9 +18,9 @@ class CentralDoor {
 
 class OuterDoor {
 
-    constructor(initialDoorRotation, outerDoorNumber) {
+    constructor(initialDoorRotation, doorNumber) {
         this.initialDoorRotation = initialDoorRotation;
-        this.outerDoorNumber = outerDoorNumber;
+        this.doorNumber = doorNumber;
     }
 
     openDoor(towerRotation, moonPosition) {

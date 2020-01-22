@@ -1,12 +1,20 @@
 import _ from 'lodash';
-var {MoonPosition, TowerRotation} = require('./rotate.js')
-var {CentralDoor, OuterDoor, TrapDoor} = require('./doors.js');
+var { MoonPosition, TowerRotation } = require('./rotate.js');
+var { CentralDoor, OuterDoor, TrapDoor } = require('./doors.js');
+
+var { TowerFactory } = require('./towerFactory.js');
+
+// Floor creation
+var towerFactory = new TowerFactory();
+var x = towerFactory.create();
+console.log(x);
 
 // Moon initialization 
 var moonAngle = new MoonPosition(0);
 
 // End Turn & rotate
 var towerRotation = new TowerRotation(0);
+x.floors[0].getOuterDoor(1).openDoor(towerRotation, moonAngle);
 
 function rotateButton() {
   const instructionText = document.createElement('div');

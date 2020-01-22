@@ -2,8 +2,9 @@ import Floor from "./floors";
 
 class Tower {
 
-    constructor(numberOfFloors) {
+    constructor(numberOfFloors, floors) {
         this.numberOfFloors = numberOfFloors;
+        this.floors = floors;
     }
 
     spawnFloors(){
