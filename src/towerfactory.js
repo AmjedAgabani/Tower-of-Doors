@@ -25,26 +25,26 @@ class TowerFactory {
             return outerDoors;
         }
 
-
         function createTrapDoors(numberOfDoors) {
             if (numberOfDoors == 2) {
                 var trapDoors = [
                     new TrapDoor(1),
                     new TrapDoor(2)
                 ]
+                return trapDoors;
             } else {
                 var trapDoors = [
                     new TrapDoor(1)
                 ]
+                return trapDoors;
             }
-            return trapDoors;
         }
 
         var floors = [
             new Floor(1, createOuterDoors(), createTrapDoors(2), createCentralDoors()),
-            new Floor(2, createOuterDoors(), createTrapDoors(1)),
-            new Floor(3, createOuterDoors(), createTrapDoors(2)),
-            new Floor(4, createOuterDoors(), createTrapDoors(1)),
+            new Floor(2, createOuterDoors(), createTrapDoors(1), []),
+            new Floor(3, createOuterDoors(), createTrapDoors(2), []),
+            new Floor(4, createOuterDoors(), createTrapDoors(1), []),
             new Floor(5, createOuterDoors(), createTrapDoors(2), createCentralDoors())
         ]
 

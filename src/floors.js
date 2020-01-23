@@ -7,8 +7,18 @@ class Floor {
         this.trapDoors = trapDoors;
     }
 
+    getCentralDoor() {
+        var selectedDoor = this.centralDoors.find(this.centralDoor);
+        return selectedDoor;
+    }
+
     getOuterDoor(doorNumber) {
         var selectedDoor = this.outerDoors.find(outerDoor => outerDoor.doorNumber === doorNumber);
+        return selectedDoor;
+    }
+
+    getTrapDoor(doorNumber) {
+        var selectedDoor = this.trapDoors.find(trapDoors => trapDoors.doorNumber === doorNumber);
         return selectedDoor;
     }
 

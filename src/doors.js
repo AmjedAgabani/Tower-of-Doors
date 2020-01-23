@@ -36,8 +36,8 @@ class OuterDoor {
 
 class TrapDoor {
 
-    constructor(trapDoorNumber) {
-        this.trapDoorNumber = trapDoorNumber;
+    constructor(doorNumber) {
+        this.doorNumber = doorNumber;
     }
 
     openDoor() {

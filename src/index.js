@@ -1,22 +1,20 @@
 import _ from 'lodash';
 var { MoonPosition, TowerRotation } = require('./rotate.js');
-var { CentralDoor, OuterDoor, TrapDoor } = require('./doors.js');
+// var { CentralDoor, OuterDoor, TrapDoor } = require('./doors.js');
 
 var { TowerFactory } = require('./towerFactory.js');
 
-// Floor creation
+// Tower creation
 var towerFactory = new TowerFactory();
 var x = towerFactory.create(5);
-console.log(x);
+
+console.log(x.floors[0]);
 
 // Moon initialization 
 var moonAngle = new MoonPosition(0);
 
 // End Turn & rotate
 var towerRotation = new TowerRotation(0);
-
-// opening door 1 on floor 1
-x.floors[0].getOuterDoor(1).openDoor(towerRotation, moonAngle);
 
 function rotateButton() {
   const instructionText = document.createElement('div');
@@ -34,15 +32,13 @@ let instructionText = rotateButton();
 document.body.appendChild(instructionText);
 
 // Central Door
-var centralDoorInstance = new CentralDoor(0);
-
 function openCentralDoor() {
   const doorOpenText = document.createElement('div');
   const doorOpenButton = document.createElement('button');
 
   doorOpenText.innerHTML = _.join(['Central', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => centralDoorInstance.openDoor(towerRotation, moonAngle);
+  doorOpenButton.onclick = () => x.floors[0].getOuterDoor(2).openDoor(towerRotation, moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
@@ -52,15 +48,13 @@ let centralDoorOpenText = openCentralDoor();
 document.body.appendChild(centralDoorOpenText);
 
 // Outer Door
-var outerDoorInstance = new OuterDoor(0, 1);
-
 function openOuterDoor() {
   const doorOpenText = document.createElement('div');
   const doorOpenButton = document.createElement('button');
 
   doorOpenText.innerHTML = _.join(['Outer', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => outerDoorInstance.openDoor(towerRotation, moonAngle);
+  doorOpenButton.onclick = () => x.floors[0].getOuterDoor(2).openDoor(towerRotation, moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
@@ -70,15 +64,13 @@ let outerDoorOpenText = openOuterDoor();
 document.body.appendChild(outerDoorOpenText);
 
 // Trap Door
-var trapDoorInstance = new TrapDoor();
-
 function openTrapDoor() {
   const doorOpenText = document.createElement('div');
   const doorOpenButton = document.createElement('button');
 
   doorOpenText.innerHTML = _.join(['Trap', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => trapDoorInstance.openDoor();
+  doorOpenButton.onclick = () => x.floors[0].getTrapDoor(2).openDoor();
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
