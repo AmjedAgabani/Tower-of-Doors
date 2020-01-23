@@ -6,7 +6,7 @@ var { TowerFactory } = require('./towerFactory.js');
 
 // Floor creation
 var towerFactory = new TowerFactory();
-var x = towerFactory.create();
+var x = towerFactory.create(5);
 console.log(x);
 
 // Moon initialization 
@@ -14,6 +14,8 @@ var moonAngle = new MoonPosition(0);
 
 // End Turn & rotate
 var towerRotation = new TowerRotation(0);
+
+// opening door 1 on floor 1
 x.floors[0].getOuterDoor(1).openDoor(towerRotation, moonAngle);
 
 function rotateButton() {

@@ -6,38 +6,49 @@ class TowerFactory {
 
     create() {
 
-        var outerDoors = [
-            new OuterDoor(0, 1),
-            new OuterDoor(60, 2),
-            new OuterDoor(120, 3),
-            new OuterDoor(180, 4),
-            new OuterDoor(240, 5),
-            new OuterDoor(300, 6)
-        ]
+        function createCentralDoors() {
+            var centralDoors = [
+                new CentralDoor(0)
+            ]
+            return centralDoors;
+        }
 
-        var trapDoors = [
-            new TrapDoor(1),
-            new TrapDoor(2)
-        ]
+        function createOuterDoors() {
+            var outerDoors = [
+                new OuterDoor(0, 1),
+                new OuterDoor(60, 2),
+                new OuterDoor(120, 3),
+                new OuterDoor(180, 4),
+                new OuterDoor(240, 5),
+                new OuterDoor(300, 6)
+            ]
+            return outerDoors;
+        }
 
-        var centralDoors = [
-            new CentralDoor(0)
-        ]
 
-        // return new Floor(1, outerDoors, trapDoors, centralDoors);
+        function createTrapDoors(numberOfDoors) {
+            if (numberOfDoors == 2) {
+                var trapDoors = [
+                    new TrapDoor(1),
+                    new TrapDoor(2)
+                ]
+            } else {
+                var trapDoors = [
+                    new TrapDoor(1)
+                ]
+            }
+            return trapDoors;
+        }
 
         var floors = [
-            new Floor(1, outerDoors, trapDoors, centralDoors),
-            new Floor(2, outerDoors, trapDoors, centralDoors),
-            new Floor(3, outerDoors, trapDoors, centralDoors),
-            new Floor(4, outerDoors, trapDoors, centralDoors),
-            new Floor(5, outerDoors, trapDoors, centralDoors)
+            new Floor(1, createOuterDoors(), createTrapDoors(2), createCentralDoors()),
+            new Floor(2, createOuterDoors(), createTrapDoors(1)),
+            new Floor(3, createOuterDoors(), createTrapDoors(2)),
+            new Floor(4, createOuterDoors(), createTrapDoors(1)),
+            new Floor(5, createOuterDoors(), createTrapDoors(2), createCentralDoors())
         ]
 
-        // console.log(floors)
-
         return new Tower(5, floors);
-
 
     }
 
