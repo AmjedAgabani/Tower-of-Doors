@@ -6,9 +6,10 @@ var { TowerFactory } = require('./towerFactory.js');
 
 // Tower creation
 var towerFactory = new TowerFactory();
-var x = towerFactory.create(5);
+var x = towerFactory.create();
 
 console.log(x.floors[0]);
+console.log(x.floors[1]);
 
 // Moon initialization 
 var moonAngle = new MoonPosition(0);

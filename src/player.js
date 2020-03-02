@@ -1,12 +1,17 @@
 class Player {
 
     //number of of floors comes from tower.js
-    constructor(numberOfFloors) {
-        this.currentFloor = numberOfFloors;
+    constructor(playerId, playerName) {
+        this.playerId = playerId;
+        this.playerName = playerName;
+    }
+
+    getFloor(floorNumber) {
+        // get the floor that you can move to
     }
 
     // change comes from doors.js
-    // direction should come from a UI of some sort
+    // direction inshould come from a UI of some sort
     moveFloors(change, direction) {
         if (direction == ascend) {
             var newFloor = this.floor + change;
@@ -20,4 +25,12 @@ class Player {
         }
         this.currentFloor = newFloor;
     }
+
+
+    getFloor(floorNumber) {
+        // get the floor that you can move to
+    }
+
 }
+
+export default Player;

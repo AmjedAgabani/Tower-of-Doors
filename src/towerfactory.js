@@ -1,6 +1,7 @@
 import { OuterDoor, TrapDoor, CentralDoor } from "./doors";
 import Floor from "./floors";
 import Tower from "./tower";
+import Player from "./player";
 
 class TowerFactory {
 
@@ -40,12 +41,19 @@ class TowerFactory {
             }
         }
 
+        function createPlayer(numberOfPlayers) {
+            var i;
+            for (i = 0; i < numberOfPlayers; i++){
+                new Player(i, "Alpha");
+            }
+        }
+
         var floors = [
-            new Floor(1, createOuterDoors(), createTrapDoors(2), createCentralDoors()),
-            new Floor(2, createOuterDoors(), createTrapDoors(1), []),
-            new Floor(3, createOuterDoors(), createTrapDoors(2), []),
-            new Floor(4, createOuterDoors(), createTrapDoors(1), []),
-            new Floor(5, createOuterDoors(), createTrapDoors(2), createCentralDoors())
+            new Floor(1, createPlayer(), createOuterDoors(), createTrapDoors(2), createCentralDoors()),
+            new Floor(2, [], createOuterDoors(), createTrapDoors(1), []),
+            new Floor(3, [], createOuterDoors(), createTrapDoors(2), []),
+            new Floor(4, [], createOuterDoors(), createTrapDoors(1), []),
+            new Floor(5, [], createOuterDoors(), createTrapDoors(2), createCentralDoors())
         ]
 
         return new Tower(5, floors);

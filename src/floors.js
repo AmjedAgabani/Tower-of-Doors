@@ -1,10 +1,11 @@
 class Floor {
 
-    constructor(floorNumber, outerDoors, trapDoors, centralDoors) {
+    constructor(floorNumber, players, outerDoors, trapDoors, centralDoors) {
         this.centralDoors = centralDoors;
         this.floorNumber = floorNumber;
         this.outerDoors = outerDoors;
         this.trapDoors = trapDoors;
+        this.players = players;
     }
 
     getCentralDoor() {
