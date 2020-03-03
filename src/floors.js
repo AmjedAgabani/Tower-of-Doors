@@ -9,7 +9,7 @@ class Floor {
     }
 
     getCentralDoor() {
-        var selectedDoor = this.centralDoors.find(this.centralDoor);
+        var selectedDoor = this.centralDoors.find(centralDoor => centralDoor);
         return selectedDoor;
     }
 

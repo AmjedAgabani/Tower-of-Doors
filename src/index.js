@@ -2,7 +2,7 @@ import _ from 'lodash';
 var { MoonPosition, TowerRotation } = require('./rotate.js');
 // var { CentralDoor, OuterDoor, TrapDoor } = require('./doors.js');
 
-var { TowerFactory } = require('./towerFactory.js');
+var { TowerFactory } = require('./towerfactory.js');
 
 // Tower creation
 var towerFactory = new TowerFactory();
@@ -39,7 +39,7 @@ function openCentralDoor() {
 
   doorOpenText.innerHTML = _.join(['Central', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => x.floors[0].getOuterDoor(2).openDoor(towerRotation, moonAngle);
+  doorOpenButton.onclick = () => x.floors[0].getCentralDoor().openDoor(towerRotation, moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
