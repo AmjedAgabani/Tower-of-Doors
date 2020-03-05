@@ -85,13 +85,16 @@ class TowerFactory {
         ]
 
         var routes = [
-            createRoute(1, floors[0].getCentralDoor(), floors[4].getCentralDoor()),
+            createRoute(1, floors[4].getCentralDoor(), floors[0].getCentralDoor()),
             createRoute(2, floors[4].getTrapDoor(1), floors[3].getTrapDoor(1)),
             createRoute(3, floors[4].getTrapDoor(2), floors[2].getTrapDoor(2)),
+
             createRoute(4, floors[3].getTrapDoor(2), floors[1].getTrapDoor(2)),
             createRoute(5, floors[3].getTrapDoor(3), floors[2].getTrapDoor(1)),
+            
             createRoute(6, floors[2].getTrapDoor(3), floors[1].getTrapDoor(1)),
             createRoute(7, floors[2].getTrapDoor(4), floors[0].getTrapDoor(2)),
+            
             createRoute(8, floors[1].getTrapDoor(1), floors[0].getTrapDoor(1)),
         ]
 
