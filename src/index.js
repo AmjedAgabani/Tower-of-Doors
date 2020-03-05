@@ -8,8 +8,8 @@ var { TowerFactory } = require('./towerfactory.js');
 var towerFactory = new TowerFactory();
 var x = towerFactory.create();
 
-console.log(x.floors[0]);
-console.log(x.floors[1]);
+// console.log(x.floors[0]);
+console.log(x);
 
 // Moon initialization 
 var moonAngle = new MoonPosition(0);

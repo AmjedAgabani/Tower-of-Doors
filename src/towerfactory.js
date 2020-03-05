@@ -27,19 +27,36 @@ class TowerFactory {
             return outerDoors;
         }
 
-        function createTrapDoors(numberOfDoors, routeNumber) {
-            if (numberOfDoors == 2) {
+        function createTrapDoors(numberOfDoors) {
+            if (numberOfDoors == 4) {
+                var trapDoors = [
+                    new TrapDoor(1),
+                    new TrapDoor(2),
+                    new TrapDoor(3),
+                    new TrapDoor(4)
+                ]
+            }
+            else if (numberOfDoors == 3) {
+                var trapDoors = [
+                    new TrapDoor(1),
+                    new TrapDoor(2),
+                    new TrapDoor(3)
+                ]
+            }
+            else if (numberOfDoors == 2) {
                 var trapDoors = [
                     new TrapDoor(1),
                     new TrapDoor(2)
                 ]
-                return trapDoors;
-            } else {
+            }
+            else if (numberOfDoors == 1) {
                 var trapDoors = [
                     new TrapDoor(1)
                 ]
-                return trapDoors;
+            } else {
+                throw error;
             }
+            return trapDoors;
         }
 
         function createPlayer(numberOfPlayers) {
@@ -49,24 +66,36 @@ class TowerFactory {
             }
         }
 
+        function createRoute(routeNumber, doorA, doorB) {
+            var route = new Route(routeNumber);
+
+            route.setDoors(doorA, doorB);
+            doorA.setRoute(route);
+            doorB.setRoute(route);
+
+            return route;
+        }
+
         var floors = [
             new Floor(1, createPlayer(), createOuterDoors(), createTrapDoors(2), createCentralDoors()),
-            new Floor(2, [], createOuterDoors(), createTrapDoors(1), []),
-            new Floor(3, [], createOuterDoors(), createTrapDoors(2), []),
-            new Floor(4, [], createOuterDoors(), createTrapDoors(1), []),
+            new Floor(2, [], createOuterDoors(), createTrapDoors(2), []),
+            new Floor(3, [], createOuterDoors(), createTrapDoors(4), []),
+            new Floor(4, [], createOuterDoors(), createTrapDoors(3), []),
             new Floor(5, [], createOuterDoors(), createTrapDoors(2), createCentralDoors())
         ]
 
-        var route = new Route(1)
+        var routes = [
+            createRoute(1, floors[0].getCentralDoor(), floors[4].getCentralDoor()),
+            createRoute(2, floors[4].getTrapDoor(1), floors[3].getTrapDoor(1)),
+            createRoute(3, floors[4].getTrapDoor(2), floors[2].getTrapDoor(2)),
+            createRoute(4, floors[3].getTrapDoor(2), floors[1].getTrapDoor(2)),
+            createRoute(5, floors[3].getTrapDoor(3), floors[2].getTrapDoor(1)),
+            createRoute(6, floors[2].getTrapDoor(3), floors[1].getTrapDoor(1)),
+            createRoute(7, floors[2].getTrapDoor(4), floors[0].getTrapDoor(2)),
+            createRoute(8, floors[1].getTrapDoor(1), floors[0].getTrapDoor(1)),
+        ]
 
-        route.setDoors(floors[0].getCentralDoor(), floors[4].getCentralDoor())
-
-        floors[0].getCentralDoor().setRoute(route);
-        floors[4].getCentralDoor().setRoute(route);
-
-        // new Route(1)
-
-        return new Tower(5, floors);
+        return new Tower(5, floors, routes);
 
     }
 

@@ -1,8 +1,9 @@
 class Tower {
 
-    constructor(numberOfFloors, floors) {
+    constructor(numberOfFloors, floors, routes) {
         this.numberOfFloors = numberOfFloors;
         this.floors = floors;
+        this.routes = routes;
     }
 
 }

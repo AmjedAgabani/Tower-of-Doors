@@ -48,6 +48,10 @@ class TrapDoor {
         console.log("Trap door is open")
     }
 
+    setRoute(route) {
+        this.route = route;
+    }
+
 }
 
 export {
