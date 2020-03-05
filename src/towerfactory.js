@@ -2,12 +2,13 @@ import { OuterDoor, TrapDoor, CentralDoor } from "./doors";
 import Floor from "./floors";
 import Tower from "./tower";
 import Player from "./player";
+import Route from "./route";
 
 class TowerFactory {
 
     create() {
 
-        function createCentralDoors() {
+        function createCentralDoors(routeNumber) {
             var centralDoors = [
                 new CentralDoor(0)
             ]
@@ -26,7 +27,7 @@ class TowerFactory {
             return outerDoors;
         }
 
-        function createTrapDoors(numberOfDoors) {
+        function createTrapDoors(numberOfDoors, routeNumber) {
             if (numberOfDoors == 2) {
                 var trapDoors = [
                     new TrapDoor(1),
@@ -43,7 +44,7 @@ class TowerFactory {
 
         function createPlayer(numberOfPlayers) {
             var i;
-            for (i = 0; i < numberOfPlayers; i++){
+            for (i = 0; i < numberOfPlayers; i++) {
                 new Player(i, "Alpha");
             }
         }
@@ -55,6 +56,15 @@ class TowerFactory {
             new Floor(4, [], createOuterDoors(), createTrapDoors(1), []),
             new Floor(5, [], createOuterDoors(), createTrapDoors(2), createCentralDoors())
         ]
+
+        var route = new Route(1)
+
+        route.setDoors(floors[0].getCentralDoor(), floors[4].getCentralDoor())
+
+        floors[0].getCentralDoor().setRoute(route);
+        floors[4].getCentralDoor().setRoute(route);
+
+        // new Route(1)
 
         return new Tower(5, floors);
 

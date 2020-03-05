@@ -14,6 +14,10 @@ class CentralDoor {
         }
     }
 
+    setRoute(route) {
+        this.route = route;
+    }
+
 }
 
 class OuterDoor {
