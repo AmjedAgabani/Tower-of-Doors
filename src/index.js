@@ -1,21 +1,8 @@
 import _ from 'lodash';
-var { MoonPosition, TowerRotation } = require('./rotate.js');
-// var { CentralDoor, OuterDoor, TrapDoor } = require('./doors.js');
+const initializer = require('./game-loop-logic/initializer');
+const userInterface = require('./userInterace');
 
-var { TowerFactory } = require('./towerfactory.js');
-
-// Tower creation
-var towerFactory = new TowerFactory();
-var x = towerFactory.create();
-
-// console.log(x.floors[0]);
-console.log(x);
-
-// Moon initialization 
-var moonAngle = new MoonPosition(0);
-
-// End Turn & rotate
-var towerRotation = new TowerRotation(0);
+userInterface();
 
 function rotateButton() {
   const instructionText = document.createElement('div');
@@ -23,7 +10,7 @@ function rotateButton() {
 
   instructionText.innerHTML = _.join(['End', 'Turn'], ' ');
   endTurnButton.innerHTML = 'click for next turn';
-  endTurnButton.onclick = () => towerRotation.rotate();
+  endTurnButton.onclick = () => initializer.towerRotation.rotate();
   instructionText.appendChild(endTurnButton);
 
   return instructionText;
@@ -39,7 +26,7 @@ function openCentralDoor() {
 
   doorOpenText.innerHTML = _.join(['Central', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => x.floors[0].getCentralDoor().openDoor(towerRotation, moonAngle);
+  doorOpenButton.onclick = () => initializer.x.floors[0].getCentralDoor().openDoor(initializer.towerRotation, initializer.moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
@@ -55,7 +42,7 @@ function openOuterDoor() {
 
   doorOpenText.innerHTML = _.join(['Outer', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => x.floors[0].getOuterDoor(2).openDoor(towerRotation, moonAngle);
+  doorOpenButton.onclick = () => initializer.x.floors[0].getOuterDoor(2).openDoor(initializer.towerRotation, initializer.moonAngle);
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
@@ -71,7 +58,7 @@ function openTrapDoor() {
 
   doorOpenText.innerHTML = _.join(['Trap', 'Door'], ' ');
   doorOpenButton.innerHTML = 'click to open door';
-  doorOpenButton.onclick = () => x.floors[0].getTrapDoor(2).openDoor();
+  doorOpenButton.onclick = () => initializer.x.floors[0].getTrapDoor(2).openDoor();
   doorOpenText.appendChild(doorOpenButton);
 
   return doorOpenText;
@@ -90,7 +77,7 @@ if (module.hot) {
     instructionText = rotateButton(); // Re-render the "component" to update the click handler
     document.body.appendChild(instructionText);
   })
-  module.hot.accept('./doors.js', function () {
+  module.hot.accept('./tower-entities/doors.js', function () {
     console.log('Accepting the updated doors module!');
     document.body.removeChild(centralDoorOpenText);
     centralDoorOpenText = openCentralDoor(); // Re-render the "component" to update the click handler
