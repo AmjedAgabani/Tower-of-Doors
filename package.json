@@ -23,7 +23,7 @@
   "homepage": "https://github.com/AmjedAgabani/Tower-Of-Doors-2-webpack#readme",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
